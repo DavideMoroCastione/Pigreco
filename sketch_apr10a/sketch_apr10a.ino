@@ -7,9 +7,10 @@
 #define buttonC 9
 #define buttonD 10
 #define buttonE 13
-int record;
 int vite;
 int caso;
+bool fine;
+int record;
 
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 
@@ -24,20 +25,75 @@ void setup() {
   pinMode(buttonD, INPUT);
   pinMode(buttonE, INPUT);
   lcd.begin(16, 2);
-  vite = 3;
+  vite = 5;
+  fine = false;
+  record = 0;
   
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  caso = random(1, 5);
-
   
+  
+  
+  while(!fine) {
+    if(digitalRead(buttonAvvia) == LOW){}
+    else
+      if(digitalRead(buttonAvvia) == HIGH){
+        caso = random(1, 6);
+        fine = true;
+      }
+  }
+  lcd.setCursor(0, 0);
+  lcd.print("Vite:");
+  while(vite > 0){
+     if(caso == 1){
+         piGreco(1, buttonA, record, "π", vite);
+     }
+     else if(caso == 2){
+         piGreco(5, buttonB, record, "π", vite);
+     }
+     else if(caso == 3){
+         piGreco(9, buttonC, record, "π", vite);
+     }
+     else if(caso == 4){
+         piGreco(12, buttonD, record, "π", vite);
+     }
+     else if(caso == 5){
+         piGreco(16, buttonE, record, "π", vite);
+     }
+     else if(caso == 6){
+      lcd.setCursor(random(), 1);
+      lcd.print("+");
+      if(digitalRead(buttonC) == HIGH);
+      vite ++;
+     }
+
+    
+  }
+  if(vite == 0){
+    lcd.setCursor(2, 0);
+    lcd.print("Haiperso");
+  }
+  fine = false;
+  vite = 5;
+  lcd.clear();
 }
 
-void spawna(int bottone) {
-  
+
+
+void piGreco(int a, int bottone, int record, String n, int vite) {
+
+    lcd.setCursor(a, 1);
+    lcd.print(n);
+    if(digitalRead(bottone) == HIGH){
+       record++;
+    }
+    else {
+       vite --;
+    }
 }
+
 
 
 
