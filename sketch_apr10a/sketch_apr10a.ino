@@ -28,13 +28,10 @@ void setup() {
   vite = 5;
   fine = false;
   record = 0;
-  
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
-  
   
   while(!fine) {
     if(digitalRead(buttonAvvia) == LOW){}
@@ -45,7 +42,7 @@ void loop() {
       }
   }
   lcd.setCursor(0, 0);
-  lcd.print("Vite:");
+  lcd.print("Vite:" + vite);
   while(vite > 0){
      if(caso == 1){
          piGreco(1, buttonA, record, "π", vite);
@@ -55,32 +52,29 @@ void loop() {
      }
      else if(caso == 3){
          piGreco(9, buttonC, record, "π", vite);
+         
      }
      else if(caso == 4){
-         piGreco(12, buttonD, record, "π", vite);
+         piGreco(12, buttonD, record, "π", vite);  
      }
      else if(caso == 5){
          piGreco(16, buttonE, record, "π", vite);
      }
      else if(caso == 6){
-      lcd.setCursor(random(), 1);
-      lcd.print("+");
-      if(digitalRead(buttonC) == HIGH);
-      vite ++;
-     }
-
-    
+       lcd.setCursor(random(), 1);
+       lcd.print("+");
+       int a = random(buttonA || buttonB || buttonC || buttonD || buttonE);
+       if(digitalRead(a) == HIGH) {
+          vite ++;
+       }
+    }
   }
-  if(vite == 0){
-    lcd.setCursor(2, 0);
-    lcd.print("Haiperso");
-  }
+  lcd.clear();
+  morte(vite);
   fine = false;
   vite = 5;
-  lcd.clear();
+  
 }
-
-
 
 void piGreco(int a, int bottone, int record, String n, int vite) {
 
@@ -91,13 +85,17 @@ void piGreco(int a, int bottone, int record, String n, int vite) {
     }
     else {
        vite --;
+       lcd.setCursor(0, 0);
+       lcd.print("Vite:" + vite);
     }
 }
 
-
-
-
-
-
+void morte(int vite) {
+  
+    if(vite == 0){
+       lcd.setCursor(2, 0);
+       lcd.print("Haiperso");
+    }
+}
 
 
