@@ -11,6 +11,7 @@ int vite;
 int caso;
 bool fine;
 int record;
+int partite;
 
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 
@@ -28,6 +29,7 @@ void setup() {
   vite = 5;
   fine = false;
   record = 0;
+  partite = 0;
 }
 
 void loop() {
@@ -39,6 +41,7 @@ void loop() {
       if(digitalRead(buttonAvvia) == HIGH){
         caso = random(1, 6);
         fine = true;
+        partite+;
       }
   }
   lcd.setCursor(0, 0);
@@ -73,7 +76,6 @@ void loop() {
   morte(vite);
   fine = false;
   vite = 5;
-  
 }
 
 void piGreco(int a, int bottone, int record, String n, int vite) {
@@ -98,4 +100,10 @@ void morte(int vite) {
     }
 }
 
+void premere(int bottone, int record, int parite) {
+
+  while(digitalRead(bottone) == HIGH) {
+    lcd.setCursor
+  }
+}
 
