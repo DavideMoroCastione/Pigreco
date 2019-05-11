@@ -66,13 +66,14 @@ void loop() {
          piGreco(16, buttonE, record, "π", vite);
      }
      else if(caso == 6){
-       lcd.setCursor(random(), 1);
-       lcd.print("+");
-       int a = random(buttonA || buttonB || buttonC || buttonD || buttonE);
-       if(digitalRead(a) == HIGH) {
-          vite ++;
-       }
-    }
+      lcd.setCursor(8, 1);
+      lcd.print("+");
+      if(digitalRead(buttonC) == HIGH){
+        vite++;
+        lcd.setCursor(0, 0);
+        lcd.print("Vite:" + vite);
+      }
+     }
   }
   lcd.clear();
   morte(vite);
