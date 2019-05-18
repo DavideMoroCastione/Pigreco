@@ -16,6 +16,8 @@ int record2;
 bool finito;
 int t1;
 int t2;
+int tc1;
+int tc2;
 
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 
@@ -69,9 +71,10 @@ void loop() {
          piGreco(15, buttonE, record, "π", vite, buttonA, buttonB, buttonC, buttonD);
      }
      else if(caso == 6){
+      tc1 = millis();
       lcd.setCursor(8, 1);
       lcd.print("+");
-      if(digitalRead(buttonC) == HIGH){
+      if(digitalRead(buttonC) == HIGH && (tc2 = millis() - tc1) < 1000){
         vite++;
         lcd.setCursor(0, 0);
         lcd.print("Vite:" + vite);
@@ -95,13 +98,12 @@ void piGreco(int a, int bottone, int record, String n, int vite, int bottone1, i
     t1 = millis();
     lcd.setCursor(a, 1);
     lcd.print(n);
-    t2 = millis();
     while(finito == false){
     if(digitalRead(bottone) == HIGH){
        record++;
        finito = true;
     }
-    else if(digitalRead(bottone1) == HIGH || digitalRead(bottone2) == HIGH || digitalRead(bottone3) == HIGH || digitalRead(bottone4) == HIGH || (t2 - t1) > 1200){
+    else if(digitalRead(bottone1) == HIGH || digitalRead(bottone2) == HIGH || digitalRead(bottone3) == HIGH || digitalRead(bottone4) == HIGH || (t2 = millis() - t1) > 1200){
        vite --;
        lcd.setCursor(0, 0);
        lcd.print("Vite:" + vite);
