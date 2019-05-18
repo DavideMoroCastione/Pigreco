@@ -45,13 +45,14 @@ void loop() {
     if(digitalRead(buttonAvvia) == LOW){}
     else
       if(digitalRead(buttonAvvia) == HIGH){
-        caso = random(1, 6);
+       
         partite++;
         fine = true;
   }
   lcd.setCursor(0, 0);
   lcd.print("Vite:" + vite);
   while(vite > 0){
+     caso = random(1, 6);
      if(caso == 1){
          piGreco(1, buttonA, record, "π", vite, buttonB, buttonC, buttonD, buttonE);
      }
@@ -76,6 +77,7 @@ void loop() {
         lcd.print("Vite:" + vite);
       }
      }
+    }
   }
   lcd.clear();
   morte(vite);
