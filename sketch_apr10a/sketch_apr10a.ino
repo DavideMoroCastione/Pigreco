@@ -13,6 +13,9 @@ bool fine;
 int record;
 int partite;
 int record2;
+bool finito;
+int t1;
+int t2;
 
 LiquidCrystal lcd(12, 11, 6, 5, 4, 3);
 
@@ -32,12 +35,13 @@ void setup() {
   record = 0;
   partite = 0;
   record2 = 0;
+  finito = false;
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   
-  while(!fine) {
+  while(fine == false) {
     if(digitalRead(buttonAvvia) == LOW){}
     else
       if(digitalRead(buttonAvvia) == HIGH){
@@ -50,20 +54,19 @@ void loop() {
   lcd.print("Vite:" + vite);
   while(vite > 0){
      if(caso == 1){
-         piGreco(1, buttonA, record, "π", vite);
+         piGreco(1, buttonA, record, "π", vite, buttonB, buttonC, buttonD, buttonE);
      }
      else if(caso == 2){
-         piGreco(5, buttonB, record, "π", vite);
+         piGreco(5, buttonB, record, "π", vite, buttonA, buttonC, buttonD, buttonE);
      }
      else if(caso == 3){
-         piGreco(9, buttonC, record, "π", vite);
-         
+         piGreco(9, buttonC, record, "π", vite, buttonA, buttonB, buttonD, buttonE);
      }
      else if(caso == 4){
-         piGreco(12, buttonD, record, "π", vite);  
+         piGreco(12, buttonD, record, "π", vite, buttonA, buttonB, buttonC, buttonE);  
      }
      else if(caso == 5){
-         piGreco(16, buttonE, record, "π", vite);
+         piGreco(16, buttonE, record, "π", vite, buttonA, buttonB, buttonC, buttonD);
      }
      else if(caso == 6){
       lcd.setCursor(8, 1);
@@ -80,21 +83,28 @@ void loop() {
   premere(buttonRecord, record, partite, record2);
   fine = false;
   vite = 5;
+  finito = false;
   
 }
 
-void piGreco(int a, int bottone, int record, String n, int vite) {
+void piGreco(int a, int bottone, int record, String n, int vite, int bottone1, int bottone2, int bottone3, int bottone4) {
 
+    t1 = millis();
     lcd.setCursor(a, 1);
     lcd.print(n);
+    t2 = millis();
+    while(finito == false){
     if(digitalRead(bottone) == HIGH){
        record++;
+       finito = true;
     }
-    else {
+    else if(digitalRead(bottone1) == HIGH || digitalRead(bottone2) == HIGH || digitalRead(bottone3) == HIGH || digitalRead(bottone4) == HIGH || (t2 - t1) > 1200){
        vite --;
        lcd.setCursor(0, 0);
        lcd.print("Vite:" + vite);
+       finito = true;
     }
+  }
 }
 
 void morte(int vite) {
