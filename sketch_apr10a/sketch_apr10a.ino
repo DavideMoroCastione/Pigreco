@@ -87,6 +87,8 @@ void loop() {
   
 }
 
+// -------- metodi --------
+
 void piGreco(int a, int bottone, int record, String n, int vite, int bottone1, int bottone2, int bottone3, int bottone4) {
 
     t1 = millis();
