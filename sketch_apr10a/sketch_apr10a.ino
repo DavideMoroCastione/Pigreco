@@ -46,9 +46,8 @@ void loop() {
     else
       if(digitalRead(buttonAvvia) == HIGH){
         caso = random(1, 6);
-        fine = true;
         partite++;
-      }
+        fine = true;
   }
   lcd.setCursor(0, 0);
   lcd.print("Vite:" + vite);
@@ -57,16 +56,16 @@ void loop() {
          piGreco(1, buttonA, record, "π", vite, buttonB, buttonC, buttonD, buttonE);
      }
      else if(caso == 2){
-         piGreco(5, buttonB, record, "π", vite, buttonA, buttonC, buttonD, buttonE);
+         piGreco(4, buttonB, record, "π", vite, buttonA, buttonC, buttonD, buttonE);
      }
      else if(caso == 3){
-         piGreco(9, buttonC, record, "π", vite, buttonA, buttonB, buttonD, buttonE);
+         piGreco(8, buttonC, record, "π", vite, buttonA, buttonB, buttonD, buttonE);
      }
      else if(caso == 4){
          piGreco(12, buttonD, record, "π", vite, buttonA, buttonB, buttonC, buttonE);  
      }
      else if(caso == 5){
-         piGreco(16, buttonE, record, "π", vite, buttonA, buttonB, buttonC, buttonD);
+         piGreco(15, buttonE, record, "π", vite, buttonA, buttonB, buttonC, buttonD);
      }
      else if(caso == 6){
       lcd.setCursor(8, 1);
