@@ -54,7 +54,7 @@ void loop() {
   lcd.setCursor(0, 0);
   lcd.print("Vite:" + vite);
   while(vite > 0){
-     caso = random(1, 6);
+     caso = random(1, 7);
      if(caso == 1){
          piGreco(1, buttonA, record, "π", vite, buttonB, buttonC, buttonD, buttonE);
      }
@@ -134,4 +134,3 @@ void premere(int bottone, int record, int partite, int record2) {
     lcd.print(partite); 
   }
 }
-
